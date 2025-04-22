@@ -1,11 +1,30 @@
-import { Search, ShoppingCart, User, Heart, Menu } from "lucide-react";
-import { Link } from "react-router-dom";
+
+import { Search, ShoppingCart, User, Heart, Menu, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState<{ email: string; role: string } | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check local storage for user data
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    toast.success("Logged out successfully");
+    navigate("/");
+  };
 
   return (
     <header className="bg-dealhunt-primary text-white py-2 sticky top-0 z-50">
@@ -33,17 +52,42 @@ const Navbar = () => {
 
           {/* Icons - Hidden on mobile */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link to="/login">
-              <Button variant="ghost" className="text-white hover:text-dealhunt-secondary">
-                <User className="h-5 w-5 mr-1" />
-                <span className="hidden lg:inline">Login</span>
-              </Button>
-            </Link>
-            <Button variant="ghost" className="text-white hover:text-dealhunt-secondary">
+            {user ? (
+              <>
+                <Button variant="ghost" className="text-white hover:text-dealhunt-secondary">
+                  <User className="h-5 w-5 mr-1" />
+                  <span className="hidden lg:inline">{user.email}</span>
+                </Button>
+                <Button 
+                  variant="ghost" 
+                  className="text-white hover:text-dealhunt-secondary"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="h-5 w-5 mr-1" />
+                  <span className="hidden lg:inline">Logout</span>
+                </Button>
+              </>
+            ) : (
+              <Link to="/login">
+                <Button variant="ghost" className="text-white hover:text-dealhunt-secondary">
+                  <User className="h-5 w-5 mr-1" />
+                  <span className="hidden lg:inline">Login</span>
+                </Button>
+              </Link>
+            )}
+            <Button 
+              variant="ghost" 
+              className="text-white hover:text-dealhunt-secondary"
+              onClick={() => toast.info("Wishlist feature coming soon!")}
+            >
               <Heart className="h-5 w-5 mr-1" />
               <span className="hidden lg:inline">Wishlist</span>
             </Button>
-            <Button variant="ghost" className="text-white hover:text-dealhunt-secondary">
+            <Button 
+              variant="ghost" 
+              className="text-white hover:text-dealhunt-secondary"
+              onClick={() => toast.info("Shopping cart feature coming soon!")}
+            >
               <ShoppingCart className="h-5 w-5 mr-1" />
               <span className="hidden lg:inline">Cart</span>
             </Button>
@@ -67,7 +111,10 @@ const Navbar = () => {
               placeholder="Search for products..."
               className="w-full py-2 px-4 rounded-md text-black"
             />
-            <Button className="absolute right-0 top-0 h-full bg-dealhunt-secondary hover:bg-dealhunt-secondary/90 rounded-l-none px-3">
+            <Button 
+              className="absolute right-0 top-0 h-full bg-dealhunt-secondary hover:bg-dealhunt-secondary/90 rounded-l-none px-3"
+              onClick={() => toast.info("Search feature coming soon!")}
+            >
               <Search className="h-5 w-5" />
             </Button>
           </div>
@@ -77,15 +124,42 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-dealhunt-primary border-t border-gray-700 py-2 animate-fade-in">
             <div className="flex flex-col space-y-2">
-              <Button variant="ghost" className="text-white hover:text-dealhunt-secondary justify-start">
-                <User className="h-5 w-5 mr-2" />
-                Account
-              </Button>
-              <Button variant="ghost" className="text-white hover:text-dealhunt-secondary justify-start">
+              {user ? (
+                <>
+                  <Button variant="ghost" className="text-white hover:text-dealhunt-secondary justify-start">
+                    <User className="h-5 w-5 mr-2" />
+                    {user.email}
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    className="text-white hover:text-dealhunt-secondary justify-start"
+                    onClick={handleLogout}
+                  >
+                    <LogOut className="h-5 w-5 mr-2" />
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <Link to="/login">
+                  <Button variant="ghost" className="text-white hover:text-dealhunt-secondary justify-start w-full">
+                    <User className="h-5 w-5 mr-2" />
+                    Login
+                  </Button>
+                </Link>
+              )}
+              <Button 
+                variant="ghost" 
+                className="text-white hover:text-dealhunt-secondary justify-start"
+                onClick={() => toast.info("Wishlist feature coming soon!")}
+              >
                 <Heart className="h-5 w-5 mr-2" />
                 Wishlist
               </Button>
-              <Button variant="ghost" className="text-white hover:text-dealhunt-secondary justify-start">
+              <Button 
+                variant="ghost" 
+                className="text-white hover:text-dealhunt-secondary justify-start"
+                onClick={() => toast.info("Shopping cart feature coming soon!")}
+              >
                 <ShoppingCart className="h-5 w-5 mr-2" />
                 Cart
               </Button>

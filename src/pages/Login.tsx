@@ -1,19 +1,44 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UserRound } from "lucide-react";
+import { toast } from "sonner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Authentication will be implemented later with Supabase
-    console.log("Login attempt with:", { email, password });
+    setIsLoading(true);
+    
+    // This is a mock authentication - in a real app, this would connect to Supabase or another backend
+    setTimeout(() => {
+      // Mock validation - in production, use proper auth
+      if (email === "admin@dealhunt.com" && password === "password") {
+        toast.success("Login successful!");
+        // Store user info in localStorage - for demo only
+        localStorage.setItem("user", JSON.stringify({ email, role: "admin" }));
+        navigate("/");
+      } else if (email === "user@dealhunt.com" && password === "password") {
+        toast.success("Login successful!");
+        // Store user info in localStorage - for demo only
+        localStorage.setItem("user", JSON.stringify({ email, role: "customer" }));
+        navigate("/");
+      } else {
+        toast.error("Invalid credentials. Try user@dealhunt.com/password or admin@dealhunt.com/password");
+      }
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  const handleForgotPassword = () => {
+    toast.info("Password reset functionality will be implemented soon.");
   };
 
   return (
@@ -64,15 +89,23 @@ const Login = () => {
 
             <div className="flex items-center justify-between">
               <div className="text-sm">
-                <Link to="/forgot-password" className="font-medium text-dealhunt-secondary hover:text-dealhunt-secondary/90">
+                <button 
+                  type="button" 
+                  className="font-medium text-dealhunt-secondary hover:text-dealhunt-secondary/90"
+                  onClick={handleForgotPassword}
+                >
                   Forgot your password?
-                </Link>
+                </button>
               </div>
             </div>
 
-            <Button type="submit" className="w-full bg-dealhunt-secondary hover:bg-dealhunt-secondary/90">
+            <Button 
+              type="submit" 
+              className="w-full bg-dealhunt-secondary hover:bg-dealhunt-secondary/90"
+              disabled={isLoading}
+            >
               <UserRound className="mr-2 h-4 w-4" />
-              Sign in
+              {isLoading ? "Signing in..." : "Sign in"}
             </Button>
           </form>
 
