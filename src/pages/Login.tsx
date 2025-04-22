@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -17,24 +16,19 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // This is a mock authentication - in a real app, this would connect to Supabase or another backend
-    setTimeout(() => {
-      // Mock validation - in production, use proper auth
-      if (email === "admin@dealhunt.com" && password === "password") {
-        toast.success("Login successful!");
-        // Store user info in localStorage - for demo only
-        localStorage.setItem("user", JSON.stringify({ email, role: "admin" }));
-        navigate("/");
-      } else if (email === "user@dealhunt.com" && password === "password") {
-        toast.success("Login successful!");
-        // Store user info in localStorage - for demo only
-        localStorage.setItem("user", JSON.stringify({ email, role: "customer" }));
-        navigate("/");
-      } else {
-        toast.error("Invalid credentials. Try user@dealhunt.com/password or admin@dealhunt.com/password");
-      }
-      setIsLoading(false);
-    }, 1000);
+    // Mock authentication - in production, this would connect to a backend
+    if (email === "admin@dealhunt.com" && password === "password") {
+      localStorage.setItem("user", JSON.stringify({ email, role: "admin" }));
+      toast.success("Welcome back, admin!");
+      navigate("/"); // Redirect to home/buying section
+    } else if (email === "user@dealhunt.com" && password === "password") {
+      localStorage.setItem("user", JSON.stringify({ email, role: "customer" }));
+      toast.success("Welcome back!");
+      navigate("/"); // Redirect to home/buying section
+    } else {
+      toast.error("Invalid credentials. Try user@dealhunt.com/password or admin@dealhunt.com/password");
+    }
+    setIsLoading(false);
   };
 
   const handleForgotPassword = () => {
