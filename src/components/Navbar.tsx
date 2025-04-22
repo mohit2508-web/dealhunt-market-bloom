@@ -1,4 +1,3 @@
-
 import { Search, ShoppingCart, User, Heart, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -34,10 +33,12 @@ const Navbar = () => {
 
           {/* Icons - Hidden on mobile */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" className="text-white hover:text-dealhunt-secondary">
-              <User className="h-5 w-5 mr-1" />
-              <span className="hidden lg:inline">Account</span>
-            </Button>
+            <Link to="/login">
+              <Button variant="ghost" className="text-white hover:text-dealhunt-secondary">
+                <User className="h-5 w-5 mr-1" />
+                <span className="hidden lg:inline">Login</span>
+              </Button>
+            </Link>
             <Button variant="ghost" className="text-white hover:text-dealhunt-secondary">
               <Heart className="h-5 w-5 mr-1" />
               <span className="hidden lg:inline">Wishlist</span>
