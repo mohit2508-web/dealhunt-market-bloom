@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 
@@ -7,7 +6,6 @@ const DealOfTheDay = () => {
     <section className="py-10 bg-gradient-to-r from-dealhunt-primary/5 to-dealhunt-secondary/5">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden">
-          {/* Left side - Image */}
           <div className="md:w-1/2 relative">
             <div className="absolute top-4 left-4 bg-dealhunt-secondary text-white font-bold px-4 py-2 rounded-full z-10">
               Deal of the Day
@@ -19,7 +17,6 @@ const DealOfTheDay = () => {
             />
           </div>
           
-          {/* Right side - Content */}
           <div className="md:w-1/2 p-6 md:p-10 flex flex-col">
             <div>
               <span className="text-sm text-gray-500">Electronics</span>
@@ -27,7 +24,6 @@ const DealOfTheDay = () => {
                 Ultra HD Smart TV 55" 4K Resolution
               </h2>
               
-              {/* Rating */}
               <div className="flex items-center mb-4">
                 <div className="flex text-yellow-400 mr-1">
                   {[...Array(5)].map((_, i) => (
@@ -48,20 +44,18 @@ const DealOfTheDay = () => {
                 voice control, streaming apps, and a sleek design that will enhance any living room.
               </p>
               
-              {/* Price */}
               <div className="flex items-baseline mb-4">
                 <span className="text-3xl font-bold text-dealhunt-primary">
-                  $399.99
+                  ₹39,999
                 </span>
                 <span className="text-xl text-gray-500 line-through ml-3">
-                  $699.99
+                  ₹69,999
                 </span>
                 <span className="ml-3 text-lg font-medium text-green-600">
                   43% off
                 </span>
               </div>
               
-              {/* Timer */}
               <div className="mb-6">
                 <p className="text-sm text-gray-500 mb-2">
                   Hurry! Offer ends in:

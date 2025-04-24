@@ -67,12 +67,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="mt-auto">
           <div className="flex items-baseline">
             <span className="text-lg font-bold text-dealhunt-primary">
-              ${product.price.toFixed(2)}
+              ₹{product.price.toLocaleString('en-IN')}
             </span>
             {product.originalPrice && (
               <>
                 <span className="text-sm text-gray-500 line-through ml-2">
-                  ${product.originalPrice.toFixed(2)}
+                  ₹{product.originalPrice.toLocaleString('en-IN')}
                 </span>
                 <span className="ml-2 text-sm font-medium text-green-600">
                   {discount}% off

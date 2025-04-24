@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 
 const categories = [
@@ -11,7 +10,7 @@ const categories = [
   {
     id: 2,
     name: "Home & Kitchen",
-    image: "https://images.unsplash.com/photo-1721322800607-8c38375eef04?ixlib=rb-4.0.3&q=80&w=300&h=300&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-4.0.3&q=80&w=300&h=300&auto=format&fit=crop",
     link: "/",
   },
   {
