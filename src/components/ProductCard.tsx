@@ -1,6 +1,6 @@
-
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
 
 export interface Product {
   id: number;
@@ -19,6 +19,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { addToCart } = useCart();
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
@@ -79,7 +80,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </>
             )}
           </div>
-          <Button className="w-full mt-3 bg-dealhunt-primary hover:bg-dealhunt-primary/90">
+          <Button 
+            className="w-full mt-3 bg-dealhunt-primary hover:bg-dealhunt-primary/90"
+            onClick={() => addToCart(product)}
+          >
             Add to Cart
           </Button>
         </div>
