@@ -9,8 +9,8 @@ const categories = [
   },
   {
     id: 2,
-    name: "Home & Kitchen",
-    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-4.0.3&q=80&w=300&h=300&auto=format&fit=crop",
+    name: "Sports & Fitness",
+    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&q=80&w=300&h=300&auto=format&fit=crop",
     link: "/",
   },
   {
