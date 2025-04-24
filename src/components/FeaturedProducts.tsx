@@ -1,4 +1,3 @@
-
 import ProductCard, { Product } from "./ProductCard";
 
 const featuredProducts: Product[] = [
@@ -23,16 +22,6 @@ const featuredProducts: Product[] = [
     image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&q=80&w=300&h=300&auto=format&fit=crop",
     category: "Electronics",
     badge: "Best Seller",
-  },
-  {
-    id: 3,
-    name: "Professional Kitchen Knife Set",
-    price: 6499,
-    originalPrice: 9999,
-    rating: 4.7,
-    reviewCount: 211,
-    image: "https://images.unsplash.com/photo-1593618998160-6de8ddcd2682?ixlib=rb-4.0.3&q=80&w=300&h=300&auto=format&fit=crop",
-    category: "Home & Kitchen",
   },
   {
     id: 4,
